@@ -1,0 +1,13 @@
+#root {
+    width: 100%;
+    height: 100vh;
+}
+
+.viewPort {
+    width: 100%;
+    height: 100vh;
+}
+
+.searchBar {
+    margin-top: 50%;
+}
