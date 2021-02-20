@@ -9,8 +9,6 @@ import {
     Grid } from '@material-ui/core';
 import SearchBar from 'material-ui-search-bar';
 
-
-
 function App() {
   return (
     <ThemeProvider theme={projectTheme}>
