@@ -28,7 +28,7 @@ class App extends React.Component {
         });
     }
 
-    setDetailsResult = (results) => {
+    setSongDetails = (results) => {
         this.setState({
             songDetails: results,
         });
@@ -53,7 +53,7 @@ class App extends React.Component {
                 <Grid item sm={10}>
                     <SearchResults 
                         tracks={this.state.tracks}
-                        setDetailsResult={this.setDetailsResult}
+                        setSongDetails={this.setSongDetails}
                     />
                 </Grid>
                 <Grid item sm={12}>

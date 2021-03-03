@@ -24,7 +24,6 @@ class MusicSearchBar extends React.Component {
             }
         })
         .then(response => {
-        	console.log(response);
             return response.text();
         })
         .then(data => {

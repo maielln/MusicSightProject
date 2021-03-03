@@ -15,7 +15,7 @@ class SearchResults extends React.Component {
         }
     }
 
-    grabMusicData(event) {
+    grabMusicData = (event) => {
         let url = "https://shazam.p.rapidapi.com/songs/get-details?key=" + event.target.id + "&locale=en-US";
         fetch(url, {
 	    "method": "GET",
@@ -31,13 +31,13 @@ class SearchResults extends React.Component {
         .then(data => {
             let jsonObject = JSON.parse(data);
             console.log(jsonObject);
-            this.props.setDetailsResult(jsonObject);
+            this.props.setSongDetails(jsonObject);
         })
         .catch(err => {
         	console.error(err);
         });
     }
-    
+
     renderImageList = () => {
 
         let htmlBuffer = this.props.tracks.map((object) => {
@@ -62,7 +62,6 @@ class SearchResults extends React.Component {
     }
 
     render() {
-        console.log("Rendering searchResults.js");
         return(
             <GridList
                 cellHeight={500}
@@ -78,7 +77,7 @@ class SearchResults extends React.Component {
 
 SearchResults.propTypes = {
     tracks: PropTypes.array,
-    setDetailsResult: PropTypes.func,
+    setSongDetails: PropTypes.func,
 }
 
 export default SearchResults;
