@@ -1,32 +1,73 @@
-import logo from './logo.svg';
 import './App.css';
-import styles from './themes/css/app.css';
 import projectTheme from './themes/musicSiteProjectTheme';
-import searchBar from './components/searchBar';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { 
     CssBaseline, 
     ThemeProvider,
     Grid } from '@material-ui/core';
-import SearchBar from 'material-ui-search-bar';
+import MusicSearchBar from './components/searchBar';
+import SearchResults from './components/searchResults';
+import MusicDetails from './components/musicDetails';
+import React from 'react';
 
-function App() {
-  return (
-    <ThemeProvider theme={projectTheme}>
-      <CssBaseline />
-      <div>
-      <Grid
-          container
-          direction="row"
-          justify="center"
-          alignItems="center">
-          <div className={styles['viewPort']}>
-            <p>New App!</p>
-            <SearchBar className={styles['searchBar']} />
-          </div>
-      </Grid>
-      </div>
-    </ThemeProvider>
-  );
+class App extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            tracks: [],
+            songID: null,
+            songDetails: null,
+        }
+    }
+
+    setQueryResult = (tracks) => {
+        this.setState({
+            tracks: tracks,
+        });
+    }
+
+    setDetailsResult = (results) => {
+        this.setState({
+            songDetails: results,
+        });
+    }
+
+    render() {
+        return (
+          <ThemeProvider theme={projectTheme}>
+            <CssBaseline />
+            <Grid
+                container
+                direction="column"
+                justify="space-between"
+                alignItems="center"
+                spacing={10}
+            >
+                <Grid item xs={8}>
+                    <MusicSearchBar 
+                        setQueryResult={this.setQueryResult}
+                    />
+                </Grid>
+                <Grid item sm={10}>
+                    <SearchResults 
+                        tracks={this.state.tracks}
+                        setDetailsResult={this.setDetailsResult}
+                    />
+                </Grid>
+                <Grid item sm={12}>
+                    <MusicDetails 
+                        songDetails={this.state.songDetails}
+                    />
+                </Grid>
+                {/* <Grid item>
+                    <MoreHorizIcon className={styles['icons']} />
+                </Grid> */}
+            </Grid>
+          </ThemeProvider>
+        );
+    }
 }
 
 export default App;
