@@ -12,11 +12,11 @@
     height: 100vh;
 }
 
-.MuiGrid-root {
-    width: 100%;
-    margin-top: 2% !important;
+.videoPlayer {
+    display: flex;
+    justify-content: center;
 }
 
-.MuiDivider-root {
-    color: #fff;
+.MuiGrid-root {
+    margin-top: 2% !important;
 }

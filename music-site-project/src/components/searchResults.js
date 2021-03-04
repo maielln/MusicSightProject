@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import {
     GridList,
     GridListTile,
-    GridListTileBar } from '@material-ui/core';
+    GridListTileBar,
+    Tooltip } from '@material-ui/core';
 
 class SearchResults extends React.Component {
 
@@ -39,22 +40,23 @@ class SearchResults extends React.Component {
     }
 
     renderImageList = () => {
-
         let htmlBuffer = this.props.tracks.map((object) => {
             return(
-                <GridListTile 
-                    onClick={this.grabMusicData}
-                    key={object.track.key}
-                >
-                    <img
-                        src={object.track.images.coverarthq}
-                        id={object.track.key}
-                    />
-                    <GridListTileBar
-                        title={object.track.title}
-                        subtitle={object.track.subtitle}
-                    />
-                </GridListTile>
+                <Tooltip title={"Click for more details."}>
+                    <GridListTile 
+                        onClick={this.grabMusicData}
+                        key={object.track.key}
+                    >
+                        <img
+                            src={object.track.images.coverarthq}
+                            id={object.track.key}
+                        />
+                        <GridListTileBar
+                            title={object.track.title}
+                            subtitle={object.track.subtitle}
+                        />
+                    </GridListTile>
+                </Tooltip>
                     );
         });
 

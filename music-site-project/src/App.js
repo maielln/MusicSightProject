@@ -4,7 +4,9 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { 
     CssBaseline, 
     ThemeProvider,
-    Grid } from '@material-ui/core';
+    Grid,
+    Accordion, 
+    Typography} from '@material-ui/core';
 import MusicSearchBar from './components/searchBar';
 import SearchResults from './components/searchResults';
 import MusicDetails from './components/musicDetails';
@@ -25,6 +27,8 @@ class App extends React.Component {
     setQueryResult = (tracks) => {
         this.setState({
             tracks: tracks,
+            songID: null,
+            songDetails:null,
         });
     }
 
@@ -32,6 +36,41 @@ class App extends React.Component {
         this.setState({
             songDetails: results,
         });
+    }
+
+    renderSearchBar = () => {
+        return(
+            <Grid item sm={12}>
+                <MusicSearchBar 
+                    setQueryResult={this.setQueryResult}
+                />
+            </Grid>
+        );
+    }
+
+    renderSearchResults = () => {
+        if(this.state.tracks !== []) {
+            return(
+                <Grid item sm={10}>
+                    <SearchResults 
+                        tracks={this.state.tracks}
+                        setSongDetails={this.setSongDetails}
+                    />
+                </Grid>
+            );
+        }
+    }
+
+    renderMusicDetails = () => {
+        if(this.state.songDetails) {
+            return(
+                <Grid item sm={12}>
+                    <MusicDetails 
+                        songDetails={this.state.songDetails}
+                    />
+                </Grid>
+            );
+        }
     }
 
     render() {
@@ -43,27 +82,13 @@ class App extends React.Component {
                 direction="column"
                 justify="space-between"
                 alignItems="center"
-                spacing={10}
             >
-                <Grid item xs={8}>
-                    <MusicSearchBar 
-                        setQueryResult={this.setQueryResult}
-                    />
+                <Grid item>
+                    <Typography variant='h4'>{"SWENG 861 Course Project: Option 1"} </Typography>
                 </Grid>
-                <Grid item sm={10}>
-                    <SearchResults 
-                        tracks={this.state.tracks}
-                        setSongDetails={this.setSongDetails}
-                    />
-                </Grid>
-                <Grid item sm={12}>
-                    <MusicDetails 
-                        songDetails={this.state.songDetails}
-                    />
-                </Grid>
-                {/* <Grid item>
-                    <MoreHorizIcon className={styles['icons']} />
-                </Grid> */}
+                {this.renderSearchBar()}
+                {this.renderSearchResults()}
+                {this.renderMusicDetails()}
             </Grid>
           </ThemeProvider>
         );
