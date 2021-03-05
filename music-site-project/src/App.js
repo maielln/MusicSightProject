@@ -1,19 +1,30 @@
-import './App.css';
+import './themes/css/App.css';
 import projectTheme from './themes/musicSiteProjectTheme';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { 
     CssBaseline, 
     ThemeProvider,
     Grid,
-    Accordion, 
     Typography} from '@material-ui/core';
 import MusicSearchBar from './components/searchBar';
 import SearchResults from './components/searchResults';
 import MusicDetails from './components/musicDetails';
 import React from 'react';
 
+/**
+ * Class to act as a container for the individual
+ * components of the UI
+ */
 class App extends React.Component {
 
+    /**
+     * Construct the class
+     *
+     * @param {*} props 
+     * 
+     * @state {array} tracks - holds the results of the initial search
+     * @state {number} songID - holds the ID of the selected song
+     * @state {object} songDetails - holds the details of the song query
+     */
     constructor(props) {
         super(props);
 
@@ -24,6 +35,12 @@ class App extends React.Component {
         }
     }
 
+    /**
+     * Method to set the tracks in this.state after performing the 
+     * search REST API call
+     * 
+     * @param {array} tracks - new songlist search results
+     */
     setQueryResult = (tracks) => {
         this.setState({
             tracks: tracks,
@@ -32,12 +49,23 @@ class App extends React.Component {
         });
     }
 
+    /**
+     * Method to set the songDetails in this.state after selecting
+     * a song to obtain details for from REST API call
+     * 
+     * @param {object} results - result from the song selection query
+     */
     setSongDetails = (results) => {
         this.setState({
             songDetails: results,
         });
     }
 
+    /**
+     * Method to render the search bar
+     * 
+     * @returns html for searchbar
+     */
     renderSearchBar = () => {
         return(
             <Grid item sm={12}>
@@ -48,6 +76,11 @@ class App extends React.Component {
         );
     }
 
+    /**
+     * Method to render the search results from search query
+     * 
+     * @returns html to display search results
+     */
     renderSearchResults = () => {
         if(this.state.tracks !== []) {
             return(
@@ -61,6 +94,11 @@ class App extends React.Component {
         }
     }
 
+    /**
+     * Method to render the details of the selected song/search result
+     * 
+     * @returns html to display selected song details
+     */
     renderMusicDetails = () => {
         if(this.state.songDetails) {
             return(
@@ -73,6 +111,11 @@ class App extends React.Component {
         }
     }
 
+    /**
+     * Method to render the application 
+     * 
+     * @returns html of application
+     */
     render() {
         return (
           <ThemeProvider theme={projectTheme}>

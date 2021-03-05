@@ -6,8 +6,19 @@ import {
     GridListTileBar,
     Tooltip } from '@material-ui/core';
 
+/**
+ * Class to hold the results from the REST API call (pulls data for selected song) 
+ * Formats the search results from the call.
+ */
 class SearchResults extends React.Component {
 
+    /**
+     * Construct the class
+     * 
+     * @param {*} props - see below for prop descriptions
+     * 
+     * @state {array} tracks - holds the results of the initial search
+     */
     constructor(props) {
         super(props);
 
@@ -16,6 +27,12 @@ class SearchResults extends React.Component {
         }
     }
 
+    /**
+     * Method to perform the REST API call - pulls data related to the user's selection from the
+     * 1-5 given songs
+     * 
+     * @param {*} event - User click on the song search results
+     */
     grabMusicData = (event) => {
         let url = "https://shazam.p.rapidapi.com/songs/get-details?key=" + event.target.id + "&locale=en-US";
         fetch(url, {
@@ -26,12 +43,10 @@ class SearchResults extends React.Component {
 	    }
         })
         .then(response => {
-        	console.log(response);
             return response.text();
         })
         .then(data => {
             let jsonObject = JSON.parse(data);
-            console.log(jsonObject);
             this.props.setSongDetails(jsonObject);
         })
         .catch(err => {
@@ -39,6 +54,11 @@ class SearchResults extends React.Component {
         });
     }
 
+    /**
+     * Method to render the search results from search bar
+     * 
+     * @returns html
+     */
     renderImageList = () => {
         let htmlBuffer = this.props.tracks.map((object) => {
             return(
@@ -63,6 +83,11 @@ class SearchResults extends React.Component {
         return htmlBuffer;
     }
 
+    /**
+     * Method to render the search results from search bar query
+     * 
+     * @returns html
+     */
     render() {
         return(
             <GridList
@@ -77,6 +102,10 @@ class SearchResults extends React.Component {
     }
 }
 
+/**
+ * @param {array} tracks - holds the results of the initial search
+ * @param {function} setSongDetails - function to fill in the data for songDetails result
+ */
 SearchResults.propTypes = {
     tracks: PropTypes.array,
     setSongDetails: PropTypes.func,

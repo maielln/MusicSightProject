@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './themes/css/index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
+/**
+ * Method to render the applications UI
+ */
 ReactDOM.render(
   <React.StrictMode>
     <App />

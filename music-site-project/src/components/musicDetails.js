@@ -5,7 +5,7 @@ import {
     Typography,
     Hidden } from '@material-ui/core';
 import ReactPlayer from 'react-player';
-import styles from '../themes/css/app.css';
+import styles from '../themes/css/main.css';
 
 class MusicDetails extends React.Component {
 

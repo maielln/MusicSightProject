@@ -1,10 +1,20 @@
 import SearchBar from 'material-ui-search-bar';
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../themes/css/app.css';
+import styles from '../themes/css/main.css';
 
+/**
+ * Class to hold the search bar and its REST API call
+ */
 class MusicSearchBar extends React.Component {
 
+    /**
+     * Constructs the class
+     * 
+     * @param {*} props 
+     * 
+     * @state {string} userSearch - holds the user's pressed keys (what's showing in search bar)
+     */
     constructor(props) {
         super(props);
 
@@ -13,6 +23,9 @@ class MusicSearchBar extends React.Component {
         }
     }
 
+    /**
+     * Method to perform REST API call to pull top 5 results (songs) related to user's query
+     */
     runSearch() {
         const searchTerm = encodeURIComponent(this.state.userSearch.trim())
         var url = "https://shazam.p.rapidapi.com/search?term=" + searchTerm + "&locale=en-US&offset=0&limit=5"
@@ -35,6 +48,11 @@ class MusicSearchBar extends React.Component {
         });
     }
 
+    /**
+     * Render the search bar and assign user interaction endpoints
+     * 
+     * @returns html
+     */
     render() {
         return(
             <div className={styles['searchBar']}>
@@ -48,6 +66,9 @@ class MusicSearchBar extends React.Component {
     }
 }
 
+/**
+ * @param {function} setQueryResult - function to fill in the tracks with result from user searh
+ */
 MusicSearchBar.propTypes = {
     setQueryResult: PropTypes.func,
 }
