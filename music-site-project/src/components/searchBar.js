@@ -27,25 +27,28 @@ class MusicSearchBar extends React.Component {
      * Method to perform REST API call to pull top 5 results (songs) related to user's query
      */
     runSearch() {
-        const searchTerm = encodeURIComponent(this.state.userSearch.trim())
-        var url = "https://shazam.p.rapidapi.com/search?term=" + searchTerm + "&locale=en-US&offset=0&limit=5"
-        fetch(url, {
-	        "method": "GET",
-	        "headers": {
-		        "x-rapidapi-key": "2c9badedfcmsh9d42050de7390abp1d438bjsn0acd3e2002c6",
-		        "x-rapidapi-host": "shazam.p.rapidapi.com"
-            }
-        })
-        .then(response => {
-            return response.text();
-        })
-        .then(data => {
-            let jsonObject = JSON.parse(data);
-            this.props.setQueryResult(jsonObject.tracks.hits);
-        })
-        .catch(err => {
-        	console.error(err);
-        });
+        // Validate user input (check if not empty and if search is a string value)
+        if(this.state.userSearch !== "" && typeof(this.state.userSearch) === "string") {
+            const searchTerm = encodeURIComponent(this.state.userSearch.trim())
+            var url = "https://shazam.p.rapidapi.com/search?term=" + searchTerm + "&locale=en-US&offset=0&limit=5"
+            fetch(url, {
+	            "method": "GET",
+	            "headers": {
+		            "x-rapidapi-key": "2c9badedfcmsh9d42050de7390abp1d438bjsn0acd3e2002c6",
+		            "x-rapidapi-host": "shazam.p.rapidapi.com"
+                }
+            })
+            .then(response => {
+                return response.text();
+            })
+            .then(data => {
+                let jsonObject = JSON.parse(data);
+                this.props.setQueryResult(jsonObject.tracks.hits);
+            })
+            .catch(err => {
+            	console.error(err);
+            });
+        }
     }
 
     /**
