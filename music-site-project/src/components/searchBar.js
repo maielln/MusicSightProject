@@ -11,7 +11,7 @@ class MusicSearchBar extends React.Component {
     /**
      * Constructs the class
      * 
-     * @param {*} props 
+     * @param {*} props - see below for prop descriptions
      * 
      * @state {string} userSearch - holds the user's pressed keys (what's showing in search bar)
      */

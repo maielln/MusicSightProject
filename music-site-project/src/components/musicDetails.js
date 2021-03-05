@@ -5,10 +5,19 @@ import {
     Typography,
     Hidden } from '@material-ui/core';
 import ReactPlayer from 'react-player';
-import styles from '../themes/css/main.css';
 
+/**
+ * Class to hold the formatting of results of user query on selected song
+ */
 class MusicDetails extends React.Component {
 
+    /**
+     * Construct the class
+     * 
+     * @param {*} props - see below for prop descriptions
+     * 
+     * @state {string} url - string of music video if incoming data contains the URL
+     */
     constructor(props) {
         super(props);
 
@@ -17,6 +26,13 @@ class MusicDetails extends React.Component {
         }
     }
 
+    /**
+     * Method to find the index of different types inside songDetails.sections
+     * 
+     * @param {String} value - item type to search for (i.e: "SONG", "ARTIST", etc)
+     * 
+     * @returns html
+     */
     findValue(value) {
         let valIndex = null;
         if (this.props.songDetails) {
@@ -26,6 +42,11 @@ class MusicDetails extends React.Component {
         return valIndex;
     }
 
+    /**
+     * Method to render and build the html containing lyrics from query
+     * 
+     * @returns html
+     */
     renderLyrics = () => {
         try {
             if(this.props.songDetails) {
@@ -46,6 +67,13 @@ class MusicDetails extends React.Component {
         }
     }
 
+    /**
+     * Method to render the metadata associated with the selected song
+     * 
+     * @param {number} songIndex - Index to find the SONG data
+     * 
+     * @returns html
+     */
     renderMetadata = (songIndex) => {
         try {
             if(this.props.songDetails) {
@@ -67,6 +95,13 @@ class MusicDetails extends React.Component {
         }
     }
 
+    /**
+     * Method to render the Youtube video if url to video is provided
+     * 
+     * @param {number} videoIndex - Index to find the url data from VIDEO section
+     * 
+     * @returns html
+     */
     renderYoutubeVideo = (videoIndex) => {
         if(this.props.songDetails && videoIndex > -1) {
             if(this.props.songDetails.sections[videoIndex].youtubeurl.actions[0].uri) {
@@ -79,6 +114,13 @@ class MusicDetails extends React.Component {
         }
     }
 
+    /**
+     * Method to render the artist image associated with the selected song
+     * 
+     * @param {number} artistIndex - Index to find the url data from ARTIST section
+     * 
+     * @returns html
+     */
     renderArtistImage = (artistIndex) => {
         if(this.props.songDetails && artistIndex > -1) {
             if(this.props.songDetails.sections[artistIndex].avatar) {
@@ -91,6 +133,11 @@ class MusicDetails extends React.Component {
         }
     }
 
+    /**
+     * Method to render the music details section of the UI
+     * 
+     * @returns html
+     */
     render() {
         console.log(this.props.songDetails);
         const videoIndex = this.findValue("VIDEO");
@@ -134,6 +181,9 @@ class MusicDetails extends React.Component {
     }
 }
 
+/**
+ * @param {object} songDetails - details from the REST API call for grabbing details of selected song
+ */
 MusicDetails.propTypes = {
     songDetails: PropTypes.object,
 }
