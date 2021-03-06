@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { 
     Grid,
-    Typography,
-    Hidden } from '@material-ui/core';
+    Typography } from '@material-ui/core';
 import ReactPlayer from 'react-player';
 
 /**
@@ -139,7 +138,6 @@ class MusicDetails extends React.Component {
      * @returns html
      */
     render() {
-        console.log(this.props.songDetails);
         const videoIndex = this.findValue("VIDEO");
         const artistIndex = this.findValue("ARTIST");
         const songIndex = this.findValue("SONG");

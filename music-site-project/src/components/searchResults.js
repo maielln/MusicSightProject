@@ -68,7 +68,7 @@ class SearchResults extends React.Component {
                         key={object.track.key}
                     >
                         <img
-                            src={object.track.images.coverarthq}
+                            src={object.track.images ? object.track.images.coverarthq : "https://snworksceo.imgix.net/dtc/3f037af6-87ce-4a37-bb37-55b48029727d.sized-1000x1000.jpg?w=1000"}
                             id={object.track.key}
                         />
                         <GridListTileBar
