@@ -17,6 +17,8 @@ class MusicSearchBar extends React.Component {
      * @param {*} props - see below for prop descriptions
      * 
      * @state {string} userSearch - holds the user's pressed keys (what's showing in search bar)
+     * @state {bool} validInput - bool to hold if the users input is valid
+     * @state {string} infoMsg - holds message that informs user of any issues/no results detected
      */
     constructor(props) {
         super(props);
@@ -61,6 +63,7 @@ class MusicSearchBar extends React.Component {
             .then(data => {
                 let jsonObject = JSON.parse(data);
                 
+                // Check that data was received
                 if(Object.keys(jsonObject).length !== 0) {
                     this.props.setQueryResult(jsonObject.tracks.hits);
                 }
