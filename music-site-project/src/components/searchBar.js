@@ -129,7 +129,7 @@ class MusicSearchBar extends React.Component {
      */
     render() {
         return(
-            <div className={styles['searchBar']}>
+            <div>
                 {this.renderInfo()}
                 {this.renderError()}
                 <SearchBar
