@@ -69,7 +69,7 @@ class MusicDetails extends React.Component {
     }
 
     /**
-     * Method to render the metadata associated with the selected song
+     * Method to build html render for variable metadata associated with the selected song
      * 
      * @param {number} songIndex - Index to find the SONG data
      * 
