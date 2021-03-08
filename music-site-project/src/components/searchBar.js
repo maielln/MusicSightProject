@@ -74,6 +74,7 @@ class MusicSearchBar extends React.Component {
                     });
                 }
             })
+            // Catch any potential errors
             .catch(err => {
                 console.log(err);
             	this.setState({
@@ -87,6 +88,7 @@ class MusicSearchBar extends React.Component {
                 });
             }
         }
+        // If input not valid, clear previous search result and set validInput false
         else{
             this.props.setQueryResult([]);
             this.setState({

@@ -57,7 +57,7 @@ class SearchResults extends React.Component {
     }
 
     /**
-     * Method to render the search results from search bar
+     * Method to build and render the variable search results from search bar
      * 
      * @returns html
      */
