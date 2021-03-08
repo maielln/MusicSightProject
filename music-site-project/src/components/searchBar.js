@@ -6,6 +6,8 @@ import { Alert } from '@material-ui/lab';
 
 /**
  * Class to hold the search bar and its REST API call
+ * 
+* @author - Nicole Maiello
  */
 class MusicSearchBar extends React.Component {
 

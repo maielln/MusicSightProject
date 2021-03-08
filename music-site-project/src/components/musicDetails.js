@@ -7,6 +7,8 @@ import ReactPlayer from 'react-player';
 
 /**
  * Class to hold the formatting of results of user query on selected song
+ * 
+ * @author - Nicole Maiello
  */
 class MusicDetails extends React.Component {
 

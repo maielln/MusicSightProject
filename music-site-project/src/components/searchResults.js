@@ -9,6 +9,8 @@ import {
 /**
  * Class to hold the results from the REST API call (pulls data for selected song) 
  * Formats the search results from the call.
+ * 
+ * @author - Nicole Maiello
  */
 class SearchResults extends React.Component {
 

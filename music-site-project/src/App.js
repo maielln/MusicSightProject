@@ -13,6 +13,8 @@ import React from 'react';
 /**
  * Class to act as a container for the individual
  * components of the UI
+ * 
+ * @author - Nicole Maiello
  */
 class App extends React.Component {
 
